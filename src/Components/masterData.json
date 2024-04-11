@@ -1,0 +1,74 @@
+[
+    {
+        "name": "RTO MASTERS",
+        "path": "RTO-MASTERS"
+    },
+    {
+        "name": "HYPOTHECATIN TYPE MASTER",
+        "path": "HYPOTHECATIN-TYPE-MASTER"
+    },
+    {
+        "name": "FUEL TYPE MASTER",
+        "path": "FUEL-TYPE-MASTER"
+    },
+    {
+        "name": "GEO EXTENSION MASTER",
+        "path": "GEO-EXTENSION-MASTER"
+    },
+    {
+        "name": "ZONE CODE MASTER",
+        "path": "ZONE-CODE-MASTER"
+    },
+    {
+        "name": "VEHICLE MASTER",
+        "path": "VEHICLE-MASTER"
+    },
+    {
+        "name": "VEHICLE BODY",
+        "path": "VEHICLE-BODY"
+    },
+    {
+        "name": "CC TYPE MASTER",
+        "path": "CC-TYPE-MASTER"
+    },
+    {
+        "name": "OFFICE MASTERS",
+        "path": "OFFICE-MASTERS"
+    },
+    {
+        "name": "VEHICLE CATEGORY",
+        "path": "VEHICLE-CATEGORY"
+    },
+    {
+        "name": "VEHICLE TYPE MASTER",
+        "path": "VEHICLE-TYPE-MASTER"
+    },
+    {
+        "name": "PGIM DEALER SETUP MASTER",
+        "path": "PGIM-DEALER-SETUP-MASTER"
+    },
+    {
+        "name": "PGIM APPL DIVISION MASTER",
+        "path": "PGIM-APPL-DIVISION-MASTER"
+    },
+    {
+        "name": "FM EMP HEAD MASTER",
+        "path": "FM-EMP-HEAD-MASTER"
+    },
+    {
+        "name": "MENU USER MASTER",
+        "path": "MENU-USER-MASTER"
+    },
+    {
+        "name": "PGIM BUS DEV MAPPING MASTER",
+        "path": "PGIM-BUS-DEV-MAPPING-MASTER"
+    },
+    {
+        "name": "EMPLOYEE MASTER",
+        "path": "EMPLOYEE-MASTER"
+    },
+    {
+        "name": "INTERMEDIARY MASTER",
+        "path": "INTERMEDIARY-MASTER"
+    }
+]

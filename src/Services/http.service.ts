@@ -1,0 +1,154 @@
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { REFERENCEURL } from '../AppConstant';
+
+ sessionStorage.setItem('token', 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyZnVuY3Rpb25hbGFkbWluIiwicHJpdmlsZWdlcyI6WyJSRUZfREFUQV9NQVNURVJfREFUQSIsIlVBTV9VU0VSX01BTkFHRU1FTlQiLCJVQU1fQ0hJTERfSURfQ1JFQVRJT04iLCJVQU1fU0VTU0lPTl9NQU5BR0VNRU5UIiwiUE9MSUNZX0JVWV9ORVdfUE9MSUNZIiwiUE9MSUNZX09JQ0xfUkVORVdBTFMiLCJQT0xJQ1lfVVBDT01JTkdfUkVORVdBTFMiLCJQT0xJQ1lfQ0xPTkVfUFJPUE9TQUxTIiwiUE9MSUNZX1NBVkVEX1BST1BPU0FMUyIsIlBPTElDWV9NWV9UUkFOU0FDVElPTlMiLCJQT0xJQ1lfU0VBUkNIX1BPTElDWSIsIlNVUFBPUlRfQ0xBSU1fUkVHSVNUUkFUSU9OIiwiU1VQUE9SVF9DTEFJTV9TVEFUVVMiLCJTVVBQT1JUX0VORE9SU0VNRU5UUyIsIlNVUFBPUlRfQ0hFQ0tfVFJBTlNBQ1RJT05fU1RBVFVTIiwiU1VQUE9SVF9MT0dfQV9TVVBQT1JUX1RJQ0tFVF9VU0VSIiwiU1VQUE9SVF9JUkRBSV9HUklFVkFOQ0VTIiwiU1VQUE9SVF9VUExPQURfRE9DVU1FTlRTIiwiT1RIRVJfTUVOVV9GT1JfVVNFUlNfQ0FTSF9ERVBPU0lUX1RPUF9VUCIsIk9USEVSX01FTlVfRk9SX1VTRVJTX01BS0VfUEFZTUVOVCIsIk9USEVSX01FTlVfRk9SX1VTRVJTX01BTlVBTF9QUkVfSU5TUEVDVElPTiIsIk9USEVSX01FTlVfRk9SX1VTRVJTX1NFTkRfUEFZTUVOVF9MSU5LIiwiT1RIRVJfTUVOVV9GT1JfVVNFUlNfUEFSSVZBSEFOX1NUQVRVUyIsIk9USEVSX01FTlVfRk9SX1VTRVJTX1BPTElDWV9HRU5VSU5FTkVTU19DSEVDSyIsIk9USEVSX01FTlVfRk9SX1VTRVJTX09QRU5fUE9MSUNZX01BUklORV9ERUNMQVJBVElPTiIsIk9USEVSX01FTlVfRk9SX1VTRVJTX1JFUE9SVFMiLCJPVEhFUl9NRU5VX0ZPUl9VU0VSU19NWV9QUk9GSUxFIiwiT1RIRVJfTUVOVV9GT1JfVVNFUlNfUEVSRk9STV9LWUMiLCJPVEhFUl9NRU5VX0ZPUl9VU0VSU19BU1NJR05fVEFTS1MiLCJET1dOTE9BRF9QT0xJQ1lfRE9DVU1FTlQiLCJET1dOTE9BRF9FTkRPUlNFTUVOVF9TQ0hFRFVMRSIsIkRPV05MT0FEX0VORE9SU0VEX1BPTElDSUVTIiwiRE9XTkxPQURfUFJPUE9TQUxfRk9STSIsIkRPV05MT0FEX0NMQUlNX0ZPUk0iLCJET1dOTE9BRF9QT0xJQ1lfVEVSTVNfQ09ORElUSU9OUyIsIkRPV05MT0FEX1BSRU1JVU1fUkVDRUlQVFMiLCJET1dOTE9BRF9DT1ZFUl9OT1RFIiwiT1RIRVJfRlVOQ1RJT05BTElUSUVTX1NVUlZFWU9SX01BTkFHRU1FTlRfUE9SVEFMIiwiU1VQUE9SVF9JUkRBSV9HUklFVkFOQ0VTX0FETUlOIl0sInJvbGVzIjpbIlJPTEVfRlVOQ1RJT05BTF9BRE1JTiJdLCJzZXNzaW9uSWQiOiJlMmRiMTMwMi1jMGQ1LTQxZjEtODliYy02YmVkZWI0MWQ3ZDMiLCJleHAiOjE3MDg1OTAxODQsInVzZXJJZCI6ImIyMDdjZjcxLTdlZTAtNGJkMy1hNGU1LWFjZjQ1ZGRkYTI3MiIsImlhdCI6MTcwODUwMzc4NH0.Qh7k230n63POuoBA_hKAkwaeuPfY3buniNaTg_eZaBP67QKpxvDcm5Xw8e21pOSyh_ZSCdn9u99L_qm4Jjy-xw');
+ localStorage.setItem('token', 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyZnVuY3Rpb25hbGFkbWluIiwicHJpdmlsZWdlcyI6WyJSRUZfREFUQV9NQVNURVJfREFUQSIsIlVBTV9VU0VSX01BTkFHRU1FTlQiLCJVQU1fQ0hJTERfSURfQ1JFQVRJT04iLCJVQU1fU0VTU0lPTl9NQU5BR0VNRU5UIiwiUE9MSUNZX0JVWV9ORVdfUE9MSUNZIiwiUE9MSUNZX09JQ0xfUkVORVdBTFMiLCJQT0xJQ1lfVVBDT01JTkdfUkVORVdBTFMiLCJQT0xJQ1lfQ0xPTkVfUFJPUE9TQUxTIiwiUE9MSUNZX1NBVkVEX1BST1BPU0FMUyIsIlBPTElDWV9NWV9UUkFOU0FDVElPTlMiLCJQT0xJQ1lfU0VBUkNIX1BPTElDWSIsIlNVUFBPUlRfQ0xBSU1fUkVHSVNUUkFUSU9OIiwiU1VQUE9SVF9DTEFJTV9TVEFUVVMiLCJTVVBQT1JUX0VORE9SU0VNRU5UUyIsIlNVUFBPUlRfQ0hFQ0tfVFJBTlNBQ1RJT05fU1RBVFVTIiwiU1VQUE9SVF9MT0dfQV9TVVBQT1JUX1RJQ0tFVF9VU0VSIiwiU1VQUE9SVF9JUkRBSV9HUklFVkFOQ0VTIiwiU1VQUE9SVF9VUExPQURfRE9DVU1FTlRTIiwiT1RIRVJfTUVOVV9GT1JfVVNFUlNfQ0FTSF9ERVBPU0lUX1RPUF9VUCIsIk9USEVSX01FTlVfRk9SX1VTRVJTX01BS0VfUEFZTUVOVCIsIk9USEVSX01FTlVfRk9SX1VTRVJTX01BTlVBTF9QUkVfSU5TUEVDVElPTiIsIk9USEVSX01FTlVfRk9SX1VTRVJTX1NFTkRfUEFZTUVOVF9MSU5LIiwiT1RIRVJfTUVOVV9GT1JfVVNFUlNfUEFSSVZBSEFOX1NUQVRVUyIsIk9USEVSX01FTlVfRk9SX1VTRVJTX1BPTElDWV9HRU5VSU5FTkVTU19DSEVDSyIsIk9USEVSX01FTlVfRk9SX1VTRVJTX09QRU5fUE9MSUNZX01BUklORV9ERUNMQVJBVElPTiIsIk9USEVSX01FTlVfRk9SX1VTRVJTX1JFUE9SVFMiLCJPVEhFUl9NRU5VX0ZPUl9VU0VSU19NWV9QUk9GSUxFIiwiT1RIRVJfTUVOVV9GT1JfVVNFUlNfUEVSRk9STV9LWUMiLCJPVEhFUl9NRU5VX0ZPUl9VU0VSU19BU1NJR05fVEFTS1MiLCJET1dOTE9BRF9QT0xJQ1lfRE9DVU1FTlQiLCJET1dOTE9BRF9FTkRPUlNFTUVOVF9TQ0hFRFVMRSIsIkRPV05MT0FEX0VORE9SU0VEX1BPTElDSUVTIiwiRE9XTkxPQURfUFJPUE9TQUxfRk9STSIsIkRPV05MT0FEX0NMQUlNX0ZPUk0iLCJET1dOTE9BRF9QT0xJQ1lfVEVSTVNfQ09ORElUSU9OUyIsIkRPV05MT0FEX1BSRU1JVU1fUkVDRUlQVFMiLCJET1dOTE9BRF9DT1ZFUl9OT1RFIiwiT1RIRVJfRlVOQ1RJT05BTElUSUVTX1NVUlZFWU9SX01BTkFHRU1FTlRfUE9SVEFMIiwiU1VQUE9SVF9JUkRBSV9HUklFVkFOQ0VTX0FETUlOIl0sInJvbGVzIjpbIlJPTEVfRlVOQ1RJT05BTF9BRE1JTiJdLCJzZXNzaW9uSWQiOiJlMmRiMTMwMi1jMGQ1LTQxZjEtODliYy02YmVkZWI0MWQ3ZDMiLCJleHAiOjE3MDg1OTAxODQsInVzZXJJZCI6ImIyMDdjZjcxLTdlZTAtNGJkMy1hNGU1LWFjZjQ1ZGRkYTI3MiIsImlhdCI6MTcwODUwMzc4NH0.Qh7k230n63POuoBA_hKAkwaeuPfY3buniNaTg_eZaBP67QKpxvDcm5Xw8e21pOSyh_ZSCdn9u99L_qm4Jjy-xw');
+
+// var token = sessionStorage.getItem('token');
+// var token = localStorage.getItem('token');
+//  const userData =` {"firstName":"Jayaa","lastName":"functional","emailId":"refsd@gamil.com","roles":"ROLE_FUNCTIONAL_ADMIN","loggedInTime":"21-02-2024 08:23:04",
+// 	  "token":"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyZnVuY3Rpb25hbGFkbWluIiwicHJpdmlsZWdlcyI6WyJSRUZfREFUQV9NQVNURVJfREFUQSIsIlVBTV9VU0VSX01BTkFHRU1FTlQiLCJVQU1fQ0hJTERfSURfQ1JFQVRJT04iLCJVQU1fU0VTU0lPTl9NQU5BR0VNRU5UIiwiUE9MSUNZX0JVWV9ORVdfUE9MSUNZIiwiUE9MSUNZX09JQ0xfUkVORVdBTFMiLCJQT0xJQ1lfVVBDT01JTkdfUkVORVdBTFMiLCJQT0xJQ1lfQ0xPTkVfUFJPUE9TQUxTIiwiUE9MSUNZX1NBVkVEX1BST1BPU0FMUyIsIlBPTElDWV9NWV9UUkFOU0FDVElPTlMiLCJQT0xJQ1lfU0VBUkNIX1BPTElDWSIsIlNVUFBPUlRfQ0xBSU1fUkVHSVNUUkFUSU9OIiwiU1VQUE9SVF9DTEFJTV9TVEFUVVMiLCJTVVBQT1JUX0VORE9SU0VNRU5UUyIsIlNVUFBPUlRfQ0hFQ0tfVFJBTlNBQ1RJT05fU1RBVFVTIiwiU1VQUE9SVF9MT0dfQV9TVVBQT1JUX1RJQ0tFVF9VU0VSIiwiU1VQUE9SVF9JUkRBSV9HUklFVkFOQ0VTIiwiU1VQUE9SVF9VUExPQURfRE9DVU1FTlRTIiwiT1RIRVJfTUVOVV9GT1JfVVNFUlNfQ0FTSF9ERVBPU0lUX1RPUF9VUCIsIk9USEVSX01FTlVfRk9SX1VTRVJTX01BS0VfUEFZTUVOVCIsIk9USEVSX01FTlVfRk9SX1VTRVJTX01BTlVBTF9QUkVfSU5TUEVDVElPTiIsIk9USEVSX01FTlVfRk9SX1VTRVJTX1NFTkRfUEFZTUVOVF9MSU5LIiwiT1RIRVJfTUVOVV9GT1JfVVNFUlNfUEFSSVZBSEFOX1NUQVRVUyIsIk9USEVSX01FTlVfRk9SX1VTRVJTX1BPTElDWV9HRU5VSU5FTkVTU19DSEVDSyIsIk9USEVSX01FTlVfRk9SX1VTRVJTX09QRU5fUE9MSUNZX01BUklORV9ERUNMQVJBVElPTiIsIk9USEVSX01FTlVfRk9SX1VTRVJTX1JFUE9SVFMiLCJPVEhFUl9NRU5VX0ZPUl9VU0VSU19NWV9QUk9GSUxFIiwiT1RIRVJfTUVOVV9GT1JfVVNFUlNfUEVSRk9STV9LWUMiLCJPVEhFUl9NRU5VX0ZPUl9VU0VSU19BU1NJR05fVEFTS1MiLCJET1dOTE9BRF9QT0xJQ1lfRE9DVU1FTlQiLCJET1dOTE9BRF9FTkRPUlNFTUVOVF9TQ0hFRFVMRSIsIkRPV05MT0FEX0VORE9SU0VEX1BPTElDSUVTIiwiRE9XTkxPQURfUFJPUE9TQUxfRk9STSIsIkRPV05MT0FEX0NMQUlNX0ZPUk0iLCJET1dOTE9BRF9QT0xJQ1lfVEVSTVNfQ09ORElUSU9OUyIsIkRPV05MT0FEX1BSRU1JVU1fUkVDRUlQVFMiLCJET1dOTE9BRF9DT1ZFUl9OT1RFIiwiT1RIRVJfRlVOQ1RJT05BTElUSUVTX1NVUlZFWU9SX01BTkFHRU1FTlRfUE9SVEFMIiwiU1VQUE9SVF9JUkRBSV9HUklFVkFOQ0VTX0FETUlOIl0sInJvbGVzIjpbIlJPTEVfRlVOQ1RJT05BTF9BRE1JTiJdLCJzZXNzaW9uSWQiOiJlMmRiMTMwMi1jMGQ1LTQxZjEtODliYy02YmVkZWI0MWQ3ZDMiLCJleHAiOjE3MDg1OTAxODQsInVzZXJJZCI6ImIyMDdjZjcxLTdlZTAtNGJkMy1hNGU1LWFjZjQ1ZGRkYTI3MiIsImlhdCI6MTcwODUwMzc4NH0.Qh7k230n63POuoBA_hKAkwaeuPfY3buniNaTg_eZaBP67QKpxvDcm5Xw8e21pOSyh_ZSCdn9u99L_qm4Jjy-xw"
+//     ,"mobileNumber":"2123432112","privileges":["REF_DATA_MASTER_DATA","UAM_USER_MANAGEMENT","UAM_CHILD_ID_CREATION","UAM_SESSION_MANAGEMENT","POLICY_BUY_NEW_POLICY","POLICY_OICL_RENEWALS","POLICY_UPCOMING_RENEWALS","POLICY_CLONE_PROPOSALS","POLICY_SAVED_PROPOSALS","POLICY_MY_TRANSACTIONS","POLICY_SEARCH_POLICY","SUPPORT_CLAIM_REGISTRATION","SUPPORT_CLAIM_STATUS","SUPPORT_ENDORSEMENTS","SUPPORT_CHECK_TRANSACTION_STATUS","SUPPORT_LOG_A_SUPPORT_TICKET_USER","SUPPORT_IRDAI_GRIEVANCES","SUPPORT_UPLOAD_DOCUMENTS","OTHER_MENU_FOR_USERS_CASH_DEPOSIT_TOP_UP","OTHER_MENU_FOR_USERS_MAKE_PAYMENT","OTHER_MENU_FOR_USERS_MANUAL_PRE_INSPECTION","OTHER_MENU_FOR_USERS_SEND_PAYMENT_LINK","OTHER_MENU_FOR_USERS_PARIVAHAN_STATUS","OTHER_MENU_FOR_USERS_POLICY_GENUINENESS_CHECK","OTHER_MENU_FOR_USERS_OPEN_POLICY_MARINE_DECLARATION","OTHER_MENU_FOR_USERS_REPORTS","OTHER_MENU_FOR_USERS_MY_PROFILE","OTHER_MENU_FOR_USERS_PERFORM_KYC","OTHER_MENU_FOR_USERS_ASSIGN_TASKS","DOWNLOAD_POLICY_DOCUMENT","DOWNLOAD_ENDORSEMENT_SCHEDULE","DOWNLOAD_ENDORSED_POLICIES","DOWNLOAD_PROPOSAL_FORM","DOWNLOAD_CLAIM_FORM","DOWNLOAD_POLICY_TERMS_CONDITIONS","DOWNLOAD_PREMIUM_RECEIPTS","DOWNLOAD_COVER_NOTE","OTHER_FUNCTIONALITIES_SURVEYOR_MANAGEMENT_PORTAL","SUPPORT_IRDAI_GRIEVANCES_ADMIN"],"lastLoggedInDateTime":"2024-02-21T08:23:04.694232618","ipAddress":"130.176.188.75"}`
+						
+//  const parseData = JSON.parse(userData);
+
+const axiosInstance = axios.create({
+  baseURL: REFERENCEURL,
+});
+
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    config.headers['Authorization'] = `Bearer ${token}`;
+    return config;
+  },
+  (error) => {
+    toast.error(error);
+    return Promise.reject(error);
+  }
+);
+
+// Reusable GET request function
+export const get = async (url:any, params = {}, headers = {}) => {
+  try {
+    const response = await axiosInstance.get(url, { params, headers: { ...headers }, });
+    return response?.data;
+  } catch (error:any) {
+    if ((error?.response && error?.response?.status === 500) || error?.response?.status === 409) {
+      const errorMessage = error?.response?.data?.message;
+      toast.error(errorMessage);
+    }
+    toast.error(error);
+    throw error;
+  }
+};
+
+// Reusable FETCH request function
+export const fetchData = async (url:any, headers:any) => {
+  try {
+    const response = await axiosInstance.get(url, headers);
+    return response.data;
+  } catch (error:any) {
+    // return error?.response;
+    toast.error(error.response.data.message);
+  }
+};
+
+// Reusable POST request function
+export const post = async (url:any, data = {}, headers = {}) => {
+  try {
+    const response = await axiosInstance.post(url, data, {
+      headers: { ...headers },
+    });
+    return response.data;
+  } catch (error:any) {
+    if ((error.response && error.response.status === 500) || error.response.status === 409) {
+      const errorMessage = error.response.data.message;
+      toast.error(errorMessage);
+    }
+    toast.error(error);
+    throw error;
+  }
+};
+
+// Reusable PATCH request function
+export const patch = async (url:any, data = {}, headers:any) => {
+  try {
+    const response = await axiosInstance.patch(url, data, {
+      headers: { ...headers },
+    });
+    return response.data;
+  } catch (error:any) {
+
+    toast.error(error?.response?.data?.message);
+
+    throw new Error(`PATCH request error: ${error.message}`);
+  }
+};
+
+export const put = async (url:any, data = {}, headers = {}) => {
+  try {
+    const response = await axiosInstance.put(url, data, {
+      headers: { ...headers },
+    });
+    return response.data;
+  } catch (error:any) {
+    toast.error(error?.response?.data?.message);
+    throw new Error(`PUT request error: ${error.message}`);
+  }
+
+};
+
+
+// Reusable DELETE request function
+export const del = async (url:any, headers:any, payload = {}) => {
+  try {
+    const response = await axiosInstance.delete(url, { headers: { ...headers }, data: payload });
+    return response.data;
+  } catch (error:any) {
+    toast.error(error?.response?.data?.message);
+    throw error;
+  }
+};
+
+export const loginPost = async (url:any, data:any) => {
+  try {
+    const response = await axiosInstance.post(url, data);
+    return response.data;
+  } catch (error:any) {
+    if (error?.response?.status == 400 && error?.response?.data?.message) {
+      toast.error(error?.response?.data?.message);
+    }
+    if (error?.response?.status == 401) {
+      toast.error(error?.response?.data?.message);
+    }
+    if (error?.response && error?.response?.status == 500) {
+      const errorMessage = error?.response?.data?.message;
+      toast.error(errorMessage);
+    }
+    if (error?.response && error?.response?.status == 404) {
+      const errorMessage = error?.response?.data?.message;
+      toast.error(errorMessage);
+    } else {
+      toast.error(error?.response?.data?.errors[0]?.message);
+    }
+
+    throw error;
+  }
+};
+
+export const gethttp = async (url:any, params = {}, headers = {}) => {
+  try {
+    const response = await axiosInstance.get(url, { params, headers: { ...headers }, });
+    return response?.data;
+  } catch (error:any) {
+    if ((error.response && error.response.status === 500) || error.response.status === 409) {
+      const errorMessage = error.response.data.message;
+      toast.error(errorMessage);
+    }
+    toast.error(error);
+    throw error;
+  }
+};

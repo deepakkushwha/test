@@ -1,0 +1,108 @@
+[
+    {
+        "name": "PGIM DEALER SETUP MASTER",
+        "locale_name": "PGIM_DEALER_SETUP_MASTER",
+        "path": "PGIM-DEALER-SETUP-MASTER",
+        "group": "INLIAS",
+        "icon": "PGIM_DEALER_SETUP"
+    },
+    {
+        "name": "PGIM APPL DIVISION MASTER",
+        "locale_name": "PGIM_APPL_DIVISION_MASTER",
+        "path": "PGIM-APPL-DIVISION-MASTER",
+        "group": "INLIAS",
+        "icon": "PGIM_APPLE_DEVISION"
+    },
+    {
+        "name": "FM EMP HEAD MASTER",
+        "locale_name": "FM_EMP_HEAD_MASTER",
+        "path": "FM-EMP-HEAD-MASTER",
+        "group": "INLIAS",
+        "icon": "FM_EMP_HEAD"
+    },
+    {
+        "name": "MENU USER MASTER",
+        "locale_name": "MENU_USER_MASTER",
+        "path": "MENU-USER-MASTER",
+        "group": "INLIAS",
+        "icon": "MENU_USER"
+    },
+    {
+        "name": "PGIM BUS DEV MAPPING MASTER",
+        "locale_name": "PGIM_BUS_DEV_MAPPING_MASTER",
+        "path": "PGIM-BUS-DEV-MAPPING-MASTER",
+        "group": "INLIAS",
+        "icon": "PGIM_BUS_DEV_MAPPING"
+    },
+    {
+        "name": "FM DIVN",
+        "locale_name": "FM_DIVN",
+        "path": "FM-DIVN",
+        "group": "INLIAS",
+        "icon": "FM_DIVN"
+    },
+    {
+        "name": "OM-ADD",
+        "locale_name": "OM_ADD",
+        "path": "OM-ADD",
+        "group": "INLIAS",
+        "icon": "OM_ADD"
+    },
+    {
+        "name": "PGIT MERGER CLOSURE OFFICE",
+        "locale_name": "PGIT_MERGER_CLOSURE_OFFICE",
+        "path": "PGIT-MERGER-CLOSURE-OFFICE",
+        "group": "INLIAS",
+        "icon": "TWO_OFFICE"
+    },
+    {
+        "name": "EAR TAG",
+        "locale_name": "EAR_TAG",
+        "path": "EAR-TAG",
+        "group": "INLIAS",
+        "icon": "EAR_TAG"
+    },
+    {
+        "name": "PGIM-TPA-PROD-DIVN",
+        "locale_name": "PGIM_TPA_PROD_DIVN",
+        "path": "PGIM-TPA-PROD-DIVN",
+        "group": "INLIAS",
+        "icon": "PGIM_TPA_PROD_DIVN"
+    },
+    {
+        "name": "MENU_USER_COMP_DIVN",
+        "locale_name": "MENU_USER_COMP_DIVN",
+        "path": "MENU-USER-COMPONENT-DIVEN-MASTER",
+        "group": "INLIAS",
+        "icon": "MENU_USER_COMP_DIVN"
+    },
+    {
+        "name": "PGIM_VEHICLE",
+        "locale_name": "PGIM_VEHICLE",
+        "path": "PGIM-VEHICLE",
+        "group": "INLIAS",
+        "icon": "PGIM_VEHICLE"
+    },
+    {
+        "name": "PCOM_CUSTOMER",
+        "locale_name": "PCOM_CUSTOMER",
+        "path": "INTERMEDIARY-MASTER",
+        "group": "INLIAS",
+        "icon": "PCOM_CUSTOMER"
+    },
+    {
+        "name": "RTO_MASTER",
+        "locale_name": "RTO_MASTER",
+        "path": "RTO-MASTERS",
+        "group": "GI COUNCIL",
+        "icon": "RTO_MASTER"
+
+    },
+    {
+        "name": "IDV MASTER",
+        "locale_name": "IDV MASTER",
+        "path": "VEHICLE-IDV-MASTER",
+        "group": "GI COUNCIL",
+        "icon": "IDV_MASTER"
+    }
+]
