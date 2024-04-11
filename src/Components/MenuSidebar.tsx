@@ -1,20 +1,19 @@
 import { Tooltip } from "primereact/tooltip";
 
-export default function MenuSidebar() {
+const MenuSidebar: React.FC<any>=()=> {
   return (
     <div className="sidebar-menu-items">
+     
       <div className="firstStep-menu">
         <ul>
-        <span  className="custom-tooltip">
+
           <li>
-            {/* <Tooltip target=".desktop-tooltip" position="right" /> */}
-             <i
-              className="pi pi-desktop"
-              // data-pr-tooltip="Desktop"
-            ></i>
           
-          </li>
-          </span>
+          <Tooltip target=".user-desktop" position="right"  />
+          <i className="pi pi-desktop user-desktop" data-pr-tooltip="Desktop"></i>
+        </li>
+
+
           <li>
           
             <Tooltip target=".user-tooltip" position="right" />
@@ -87,3 +86,5 @@ export default function MenuSidebar() {
     </div>
   );
 }
+
+export default MenuSidebar

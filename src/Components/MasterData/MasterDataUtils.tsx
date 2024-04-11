@@ -44,7 +44,12 @@ export const metaData = async (
       name: "action",
       cell: (row: any) => (
         <span className="table-action-row">
-          <span className="pi pi-ellipsis-v" onClick={() => setVisible(true)}></span> 
+          <div className="action-icons">
+            <span className="pi pi-pencil icon" onClick={Edit}></span> 
+            <span className="pi pi-trash icon" onClick={Edit}></span> 
+            </div>
+
+          {/* <span className="pi pi-ellipsis-v" onClick={() => setVisible(true)}></span>  */}
           {/* <OverlayPanel show={visible} onHide={() => setVisible(false)}>
           <div className="dropdown">
             <ul className="dropdown-menu">

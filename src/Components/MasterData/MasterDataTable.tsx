@@ -40,6 +40,7 @@ const MasterDataTable: React.FC<any> = ({
             sortable={col.name === "action" ? false : true}
             body={(rowData) =>
               col.name === "action" ? col.cell(rowData) : rowData[col.label]
+              // col.name === "action" ? col.cell("sdfs") : col.cell("sdfhbfeghnfs")
             }
             frozen={col.name === "action" ? true : false}
             alignFrozen="right"

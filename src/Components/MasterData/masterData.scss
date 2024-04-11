@@ -189,8 +189,8 @@ $base-color: #d40000;
     }
     .popup-form .p-dialog-content {
         border-radius: 0 0 20px 20px;
-        margin-right: 1px;
-        padding: 8px 16px;
+        padding:8px 20px;
+        overflow: hidden;
     }
     .craeteIDV-row {
         -webkit-column-gap: 16px;
@@ -198,6 +198,7 @@ $base-color: #d40000;
         display: flex;
         flex-wrap: wrap;
         row-gap: 22px;
+        margin: 16px 0;
     }
     .craeteIDV-row .craeteIDVcol-6 {
         width: calc(50% - 8px);
@@ -221,7 +222,7 @@ $base-color: #d40000;
     .popup-form {
         background-color: #ffff;
         border: 1px solid #b1b1b3;
-        border-radius: 2px;
+        border-radius: 10px;
         max-width: 620px;
         min-width: 480px;
         padding-bottom: 18px !important;
@@ -276,6 +277,14 @@ $base-color: #d40000;
         // height: 40px;
         border-radius: 6px;
         margin-top: 2px;
+        padding: 0 16px;
+        &:hover{
+            border: 1px solid #ced4da  !important;
+        }
+       &:enabled:focus{
+        border: 1px solid #ced4da  !important;
+        box-shadow:none !important;
+        }
     }
    .p-dropdown-items-wrapper{background-color: #f3f3f3;
   
@@ -290,6 +299,7 @@ ul{
         // padding: 16px;
         .p-datatable-tbody tr td {
             color: #000;
+            border: 1px solid #d4d4d4;
             font-size: 15px;
             padding: 12px;
             vertical-align: middle;
@@ -339,14 +349,20 @@ ul{
             }
         }
     }
+
     .data-table .p-datatable-thead tr th {
-        background-color: #f3f3f3;
+        .p-column-header-content{display: flex;gap: 8px;}
+        background-color: #f9fafc;
+            border: 1px solid #d4d4d4;
         color: #000;
         font-size: 15px;
         font-weight: 700;
         padding: 12px;
         text-transform: uppercase;
         white-space: nowrap;
+        span{
+            // margin-left: 8px;
+        }
         .data-table .p-datatable-thead tr:last-child {
             border-radius: 0 26px 26px 0;
         }
@@ -393,4 +409,15 @@ ul{
    
       
       
-    
+    table{
+        border-collapse: collapse !important;
+    }
+    .action-icons{display: flex; gap: 10px;
+    .icon{
+        color: #6c757d;
+        font-size: 12px;
+        background: #ededed;
+        padding: 6px;
+        border-radius: 4px;
+    }
+}

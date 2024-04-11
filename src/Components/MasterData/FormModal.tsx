@@ -1,5 +1,7 @@
 import { Calendar } from "primereact/calendar";
 import { InputNumber } from "primereact/inputnumber";
+import '../../../src/App.scss';
+// import './App.scss';
 import React from "react";
 // import { toTitleCase } from "../../utils/commonUtils";
 
@@ -14,17 +16,14 @@ const FormModal: React.FC<any> = ({
 }) => {
   // console.log('isDisable', isDisable, formData);
 
-  const getComponent = (item) => {
+  const getComponent = (item:any) => {
 
     switch (item?.datatype) {
       case "String":
         return <>
           <input
-            className={
-              errors[item.payloadName]
-                ? " form-control did-floating-input input-error"
-                : " form-control did-floating-input"
-            }
+            className={ errors[item.payloadName] ? "inputs input-error": "inputs" } 
+            required
             type={item?.datatype}
             id={item.payloadName}
             name={item.payloadName}
@@ -33,12 +32,8 @@ const FormModal: React.FC<any> = ({
             onChange={(e) => handleInputChange(e, item?.regex)}
             placeholder=""
           />
-          <label className="did-floating-label ">
-            {(item?.displayName)}
-          </label>
-          <div className="error-msg">
-            {errors[item?.payloadName]}
-          </div>
+          <label className="user-labels">{(item?.displayName)}</label>
+          <div className="error-msg">{errors[item?.payloadName]}</div>
         </>
         break;
       case "Number":
@@ -46,12 +41,8 @@ const FormModal: React.FC<any> = ({
           <div className="input-section pr-input-number">
             <span className="">
               <InputNumber
-                className={
-                  errors[item.payloadName]
-                    ? "gradient-label-input input-error"
-                    : "gradient-label-input"
-                }
-                // className="gradient-label-input"
+                className={ errors[item.payloadName] ? "inputs input-error": "inputs" } 
+                required
                 id={item.payloadName}
                 name={item.payloadName}
                 value={formValues[item.payloadName] || ""}
@@ -61,12 +52,8 @@ const FormModal: React.FC<any> = ({
                 useGrouping={false}
                 maxLength={6}
               />
-              <label className="did-floating-label ">
-                {(item?.displayName)}
-              </label>
-              <div className="error-msg">
-                {errors[item?.payloadName]}
-              </div>
+               <label className="user-labels">{(item?.displayName)}</label>
+              <div className="error-msg">{errors[item?.payloadName]}</div>
             </span>
           </div>
 
@@ -78,50 +65,35 @@ const FormModal: React.FC<any> = ({
             <Calendar
               id="date"
               name={item.payloadName}
-              className={`custom-field did-floating-input`}
+              className={ errors[item.payloadName] ? "inputs input-error": "inputs" } 
+              required
               value={formValues[item.payloadName] || ""}
               placeholder=""
               readOnlyInput
               dateFormat="dd-mm-yy"
-              // maxDate={new Date()}
               onChange={(e) => handleInputChange(e, item?.regex)}
             />
-            <label
-              className="did-floating-label "
-              htmlFor="fromdate"
-            >
-              {(item?.displayName)}
-            </label>
-            <div className="error-msg">
-              {errors[item?.payloadName]}
-            </div>
+            <label className="user-labels">{(item?.displayName)}</label>
+            <div className="error-msg">{errors[item?.payloadName]}</div>
           </span>
-          {/* {!valid && <div className="error-message">{message}</div>} */}
         </div>
         break;
       case "Boolean":
         return <>
           <div className="did-floating-label-content">
             <select
-              className={
-                errors[item.payloadName]
-                  ? "did-floating-select input-error"
-                  : "did-floating-select"
-              }
+              className={ errors[item.payloadName] ? "inputs input-error": "inputs" } 
+              required
               aria-label="Default select example"
               name={item?.payloadName}
               onChange={handleInputChange}
               value={formValues[item.payloadName] || ""}
             >
-              <option value="" selected>
-                Select
-              </option>
+              <option value="" selected>Select</option>
               <option value="true">True</option>
               <option value="false">False</option>
             </select>
-            <label className="did-floating-label">
-              {(item?.displayName)}
-            </label>
+            <label className="user-labels"> {(item?.displayName)} </label>
           </div>
         </>
         break;
@@ -129,11 +101,8 @@ const FormModal: React.FC<any> = ({
       default:
         return <>
           <input
-            className={
-              errors[item.payloadName]
-                ? " form-control did-floating-input input-error"
-                : " form-control did-floating-input"
-            }
+            className={ errors[item.payloadName] ? "inputs input-error": "inputs" } 
+            required
             type={item?.datatype}
             id={item.payloadName}
             name={item.payloadName}
@@ -142,12 +111,8 @@ const FormModal: React.FC<any> = ({
             onChange={(e) => handleInputChange(e, item?.regex)}
             placeholder=""
           />
-          <label className="did-floating-label ">
-            {(item?.displayName)}
-          </label>
-          <div className="error-msg">
-            {errors[item?.payloadName]}
-          </div>
+         <label className="user-labels">{(item?.displayName)}</label>
+          <div className="error-msg">{errors[item?.payloadName]}</div>
         </>
         break;
     }
@@ -159,11 +124,11 @@ const FormModal: React.FC<any> = ({
 
       <form onSubmit={handleSubmit}>
         <div className="craeteIDV-row">
-          {formData?.sort((a, b) => a.columnOrder - b.columnOrder).map((item: any, index: any) =>
+          {formData?.sort((a:any, b:any) => a.columnOrder - b.columnOrder).map((item: any, index: any) =>
             item?.createEditDisplay ? (
               <div className="craeteIDVcol-6" key={index}>
 
-                <div className="form-group did-floating-label-content">
+                <div className="floatinput-group">
                   {getComponent(item)}
                  
                 </div>
@@ -174,8 +139,8 @@ const FormModal: React.FC<any> = ({
         </div>
 
         {!view && (
-          <div className="login-footerBox mt-3">
-            <button className={`btn submitbtn ${isDisable && 'disabled'}`} type="submit">
+          <div className="login-footerBox">
+            <button className="login-btn" type="submit">
               Submit
             </button>
           </div>

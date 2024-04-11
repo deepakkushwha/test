@@ -16,6 +16,8 @@ import * as MasterDataUtils from "./MasterDataUtils";
 import "./masterData.scss";
 // import { DATA_TABLE_INITIAL_STATE, PAGINATION_ARRAY } from '../../AppConstant';
 import { Button } from "primereact/button";
+import { InputText } from "primereact/inputtext";
+import { Tooltip } from "primereact/tooltip";
 const MasterDataTable = lazy(() => import("./MasterDataTable"));
 // const ConfirmationPopup = lazy(() => import('../../components/ConfirmationPopup'));
 
@@ -31,7 +33,7 @@ const MasterData: React.FC = () => {
   const [columnsMetaData, setColumnMetaData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [editFlag, seteditFlag] = useState(false);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<any>({});
   const [EditId, setEditId] = useState("");
   const [pagetitle, setpagetitle] = useState("");
   const [refDataName, setRefDataName] = useState("");
@@ -145,11 +147,9 @@ const MasterData: React.FC = () => {
       filterFlag
     );
   };
-  console.log("filterDatafilterData", columnsData);
-  function isObjectValuesNotEmpty(obj) {
-    for (const value of Object.values(formData)) {
+  function isObjectValuesNotEmpty(obj:any) {
+    for (const value of Object.values<any>(formData)) {
       let val = obj[value["payloadName"]];
-      // console.log('val',val);
       if (!val || (typeof val === "string" && val.trim() === "")) {
         return false;
       }
@@ -157,10 +157,8 @@ const MasterData: React.FC = () => {
     return true;
   }
   const handleInputChange = (e: any, regex = null) => {
-    // console.log('handleInputChange',formData);
     const { name, value } = e.target;
     delete errors[name];
-    // console.log(' name, value', name, value, regex,formValues);
 
     if (regex && (!value || (regex && !new RegExp(regex).test(value)))) {
       setErrors({
@@ -174,21 +172,18 @@ const MasterData: React.FC = () => {
       ...formValues,
       [name]: value,
     });
-    // console.log('formData: ', formData, formValues);
     let isSubmitDisable = isObjectValuesNotEmpty({
       ...formValues,
       [name]: value,
     });
     let updatedFormValues = { ...formValues, [name]: value };
-    // console.log('hasNonEmptyFields: ', hasNonEmptyFields(formValues));
-    // console.log('hasNonEmptyFields: ', hasNonEmptyExternalIdFields(updatedFormValues));
 
     // setIsDisabled(hasNonEmptyFields(formValues))
     setIsDisabled(hasNonEmptyExternalIdFields(updatedFormValues));
     // setIsDisabled(!isSubmitDisable);
   };
 
-  const hasNonEmptyExternalIdFields = (obj) => {
+  const hasNonEmptyExternalIdFields = (obj:any) => {
     // Check if externalId is present and has a non-empty value
     if (obj?.hasOwnProperty("externalId") && obj.externalId !== "") {
       return false;
@@ -197,7 +192,7 @@ const MasterData: React.FC = () => {
     }
   };
 
-  const hasNonEmptyFields = (obj) => {
+  const hasNonEmptyFields = (obj:any) => {
     if (Object.keys(obj).length === 0) {
       return false;
     }
@@ -209,9 +204,7 @@ const MasterData: React.FC = () => {
     return false;
   };
 
-  // console.log('formValues', formValues);
 
-  // console.log('errors', errors);
   const handleView = useCallback(
     (row: any) => {
       // setShowModal(true);
@@ -227,7 +220,6 @@ const MasterData: React.FC = () => {
   );
 
   const Edit = (row: any) => {
-    // console.log('roewwwwww',row);
     // setView(false);
     // setShowModal(true);
     // setformTitle("Edit");
@@ -291,7 +283,7 @@ const MasterData: React.FC = () => {
     setDeleteModal(true);
   };
 
-  const onPage = (event) => {
+  const onPage = (event:any) => {
     setlazyState({
       ...lazyState,
       rows: event.rows,
@@ -318,9 +310,7 @@ const MasterData: React.FC = () => {
     setFilterData([]);
   };
 
-  // console.log('lazy', lazyState);
-  const handleSort = (event) => {
-    // console.log('lazzzzy',lazyState);
+  const handleSort = (event:any) => {
     let sort = lazyState?.sortOrder === 1 ? -1 : 1;
     let type = sort === 1 ? "ASC" : "DESC";
     let parameter = event?.sortField;
@@ -348,6 +338,7 @@ const MasterData: React.FC = () => {
             <MenuSidebar />
           </div>
 
+
           <Suspense fallback={<></>}>
             <MasterDataBreadcrumb pagetitle={pagetitle} />
             <div className="inner-page-wrapper">
@@ -368,21 +359,15 @@ const MasterData: React.FC = () => {
                     {pagetitle && (
                       <div className="top-right-btn">
                         <>
-                          <Button
-                            tooltip="Filter Criteria"
-                            tooltipOptions={{
-                              position: "bottom",
-                              mouseTrack: true,
-                              mouseTrackTop: 15,
-                            }}
-                            className="btn datatable-btn first-btn"
-                            onClick={() => setVisible(true)}
-                          >
-                            {/* Filter  */}
-                            {/* <i className="icon icon-filter"></i> */}
+
+
+                       <Tooltip target=".user-Filter" position="left" />
+                          <Button className="btn datatable-btn first-btn user-Filter" data-pr-tooltip="Filter" onClick={() => setVisible(true)}>
                             <i className="pi pi-sliders-h " style={{ fontSize: '1rem' }}></i>
-                            {/* Filter */}
                           </Button>
+
+
+
                           {!histroy && (
                             <Button
                               className="btn datatable-btn"
@@ -409,12 +394,12 @@ const MasterData: React.FC = () => {
                           col={columns
                             .map(({ columnOrder }) =>
                               columnsMetaData.find(
-                                (obj) => obj.columnOrder === columnOrder
+                                (obj:any) => obj.columnOrder === columnOrder
                               )
                             )
                             .filter(Boolean)}
                           onDataReceived={handleChildData}
-                          onFlagReceived={(data) => setVisible(data)}
+                          onFlagReceived={(data:any) => setVisible(data)}
                           filterFormData={filterData}
                         />
                       </div>
@@ -423,18 +408,18 @@ const MasterData: React.FC = () => {
                       <div className="table-common-filter-row">
                         <div className="common-filter-content">
                           {(filterData as any)?.filterField.map(
-                            (field, index) => (
+                            (field:any, index:any) => (
                               <span key={index}>
                                 <b>{field.filterColumn.displayName}:</b>{" "}
                                 {field.textFilter &&
                                 field.textFilter.length > 0 ? (
                                   <>
                                     {field.textFilter.map(
-                                      (textFilter, textIndex) => (
+                                      (textFilter:any, textIndex:any) => (
                                         <span key={textIndex}>
                                           {
                                             operator.find(
-                                              (op) =>
+                                              (op:any) =>
                                                 op.filterDataSet ===
                                                 textFilter.filterOperator
                                             )?.value
@@ -531,6 +516,11 @@ const MasterData: React.FC = () => {
           </Suspense>
         </div>
       </div>
+
+
+
+
+
     </>
   );
 };

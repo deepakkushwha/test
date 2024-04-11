@@ -9,8 +9,7 @@ const MasterDataTable: React.FC<any> = ({
   totalRecords,
   columns,
 }) => {
-  console.log(columnsData)
-  console.log(columns)
+ 
   return (
     <>
    <div className="card table-card">
